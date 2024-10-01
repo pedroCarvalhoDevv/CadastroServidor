@@ -11,6 +11,7 @@ public class Lotacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @Column(name = "data_Cadastro", updatable = false)
     private LocalDate dataCadastro;
 
     public Lotacao() {
@@ -39,4 +40,9 @@ public class Lotacao {
     public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
+@PrePersist
+    protected void onCreate(){
+        this.dataCadastro = LocalDate.now();
+}
+
 }

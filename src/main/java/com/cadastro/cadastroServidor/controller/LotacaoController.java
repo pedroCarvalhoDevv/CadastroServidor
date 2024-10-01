@@ -15,7 +15,7 @@ public class LotacaoController {
         this.lotacaoService = lotacaoService;
     }
     @PostMapping
-    List<Lotacao> creat(@RequestBody Lotacao lotacao){
+    public Lotacao creat(@RequestBody Lotacao lotacao){
         return lotacaoService.create(lotacao);
     }
     @GetMapping
@@ -23,7 +23,7 @@ public class LotacaoController {
         return lotacaoService.list();
     }
     @PutMapping
-    List<Lotacao> update(@RequestBody Lotacao lotacao){
+    public Lotacao update(@RequestBody Lotacao lotacao){
         return lotacaoService.update(lotacao);
     }
     @DeleteMapping("{id}")

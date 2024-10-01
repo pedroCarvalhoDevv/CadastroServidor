@@ -15,19 +15,17 @@ public class ServidorService {
         this.servidorRepository = servidorRepository;
     }
 
-    public List<Servidor> create(Servidor servidor){
-        servidorRepository.save(servidor);
-        return list();
+    public Servidor create(Servidor servidor){
+        return servidorRepository.save(servidor);
     }
-    public List<Servidor> list(){
-        return servidorRepository.findAll();
+    public List <Servidor> list(){
+        return (List<Servidor>) servidorRepository.findAll();
     }
-    public List<Servidor> update(Servidor servidor){
-        servidorRepository.save(servidor);
-        return list();
+    public Servidor update(Servidor servidor){
+        return servidorRepository.save(servidor);
     }
-    public List<Servidor> delete(Long matriculaId){
+    public Servidor delete(Long matriculaId) {
         servidorRepository.deleteById(matriculaId);
-        return list();
+        return delete(matriculaId);
     }
 }

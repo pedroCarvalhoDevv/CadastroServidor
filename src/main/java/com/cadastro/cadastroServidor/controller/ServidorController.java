@@ -15,19 +15,19 @@ public class ServidorController {
         this.servidorService = servidorService;
     }
     @PostMapping
-    List<Servidor> creat(@RequestBody Servidor servidor){
+    public Servidor creat(@RequestBody Servidor servidor){
         return servidorService.create(servidor);
     }
     @GetMapping
-    List<Servidor> list(){
+    List <Servidor> list(){
         return servidorService.list();
     }
     @PutMapping
-    List<Servidor> update(@RequestBody Servidor servidor){
+    public Servidor update(@RequestBody Servidor servidor){
         return servidorService.update(servidor);
     }
     @DeleteMapping("{matriculaId}")
-    List<Servidor> delete(@PathVariable("matriculaId") Long matriculaId){
+    public Servidor delete(@PathVariable("matriculaId") Long matriculaId){
         return servidorService.delete(matriculaId);
 
     }

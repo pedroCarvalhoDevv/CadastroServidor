@@ -16,21 +16,17 @@ public class LotacaoService {
         this.lotacaoRepository = lotacaoRepository;
     }
 
-    public List<Lotacao> create(Lotacao lotacao){
-        lotacaoRepository.save(lotacao);
-        return list();
+    public Lotacao create(Lotacao lotacao){
+        return lotacaoRepository.save(lotacao);
     }
     public List<Lotacao> list(){
         return lotacaoRepository.findAll();
-
     }
-    public List<Lotacao> update(Lotacao lotacao){
-        lotacaoRepository.save(lotacao);
-        return list();
-
+    public Lotacao update(Lotacao lotacao){
+        return lotacaoRepository.save(lotacao);
     }
     public List<Lotacao> delete(Long id){
         lotacaoRepository.deleteById(id);
-        return list();
+        return delete(id);
     }
 }
