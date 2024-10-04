@@ -7,10 +7,13 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "tb_lotacao")
 public class Lotacao {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
+
     @Column(name = "data_Cadastro", updatable = false)
     private LocalDate dataCadastro;
 

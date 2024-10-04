@@ -1,5 +1,6 @@
 package com.cadastro.cadastroServidor.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -10,8 +11,12 @@ public class Servidor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long matriculaId;
+
     private String nome;
+
+    @Column(name = "data", updatable = false)
     private LocalDate data;
+
     @ManyToOne
     @JoinColumn(name = "lotacao")
     private Lotacao lotacao;

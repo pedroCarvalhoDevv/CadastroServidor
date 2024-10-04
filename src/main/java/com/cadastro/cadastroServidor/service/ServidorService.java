@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServidorService {
@@ -24,8 +25,10 @@ public class ServidorService {
     public Servidor update(Servidor servidor){
         return servidorRepository.save(servidor);
     }
-    public Servidor delete(Long matriculaId) {
+    public Optional<Servidor> findById(Long matriculaId){
+        return servidorRepository.findById(matriculaId);
+    }
+    public void delete(Long matriculaId) {
         servidorRepository.deleteById(matriculaId);
-        return delete(matriculaId);
     }
 }
