@@ -3,6 +3,7 @@ package com.cadastro.cadastroServidor.controller;
 import com.cadastro.cadastroServidor.entity.Lotacao;
 import com.cadastro.cadastroServidor.entity.Servidor;
 import com.cadastro.cadastroServidor.service.LotacaoService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,12 +27,14 @@ public class LotacaoController {
         return lotacaoService.list();
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Lotacao> findById(@PathVariable Long id){
+    public ResponseEntity<Object> findById(@PathVariable Long id) {
         Optional<Lotacao> lotacao = lotacaoService.findById(id);
-        if(lotacao.isPresent()){
+        if (lotacao.isPresent()) {
             return ResponseEntity.ok(lotacao.get());
-        }else{
-            return ResponseEntity.notFound().build();
+        } else {
+            // Retorna 404 com mensagem personalizada no corpo
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("O ID " + id + " não foi encontrado.");
         }
     }
     @PutMapping

@@ -2,6 +2,8 @@ package com.cadastro.cadastroServidor.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 
@@ -11,17 +13,21 @@ public class Servidor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long matriculaId;
-
     private String nome;
-
-    @Column(name = "data", updatable = false)
+    @Column(columnDefinition = "date")
     private LocalDate data;
-
     @ManyToOne
     @JoinColumn(name = "lotacao")
     private Lotacao lotacao;
 
     public Servidor() {
+    }
+
+    public Servidor(Long matriculaId, String nome, LocalDate data, Lotacao lotacao) {
+        this.matriculaId = matriculaId;
+        this.nome = nome;
+        this.data = data;
+        this.lotacao = lotacao;
     }
 
     public Long getMatriculaId() {
@@ -55,4 +61,5 @@ public class Servidor {
     public void setLotacao(Lotacao lotacao) {
         this.lotacao = lotacao;
     }
+
 }

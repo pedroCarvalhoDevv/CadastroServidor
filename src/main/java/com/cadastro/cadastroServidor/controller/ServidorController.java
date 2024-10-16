@@ -2,6 +2,7 @@ package com.cadastro.cadastroServidor.controller;
 
 import com.cadastro.cadastroServidor.entity.Servidor;
 import com.cadastro.cadastroServidor.service.ServidorService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,15 +25,18 @@ public class ServidorController {
     List <Servidor> list(){
         return servidorService.list();
     }
-    @GetMapping("/{matriculaId}")
-    public ResponseEntity<Servidor> findById(@PathVariable Long matriculaId){
-        Optional<Servidor>servidor = servidorService.findById(matriculaId);
-        if(servidor.isPresent()){
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> findById(@PathVariable Long id) {
+        Optional<Servidor> servidor = servidorService.findById(id);
+        if (servidor.isPresent()) {
             return ResponseEntity.ok(servidor.get());
-        }else{
-            return ResponseEntity.notFound().build();
+        } else {
+            // Retorna 404 com mensagem personalizada no corpo
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("O ID " + id + "não foi encontrado.");
         }
     }
+
     @PutMapping
     public Servidor update(@RequestBody Servidor servidor){
         return servidorService.update(servidor);

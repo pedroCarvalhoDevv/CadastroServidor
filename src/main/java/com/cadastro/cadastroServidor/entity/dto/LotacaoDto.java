@@ -1,30 +1,18 @@
-package com.cadastro.cadastroServidor.entity;
+package com.cadastro.cadastroServidor.entity.dto;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import org.springframework.cglib.core.Local;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "tb_lotacao")
-public class Lotacao {
+public class LotacaoDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
     private String nome;
-    @NotNull
-    @Column(name = "data_Cadastro", updatable = false)
     private LocalDateTime dataCadastro;
 
-    public Lotacao() {
+    public LotacaoDto() {
     }
 
-    public Lotacao(Long id, String nome, LocalDateTime dataCadastro) {
+    public LotacaoDto(Long id, String nome, LocalDateTime dataCadastro) {
         this.id = id;
         this.nome = nome;
         this.dataCadastro = dataCadastro;
@@ -53,6 +41,4 @@ public class Lotacao {
     public void setDataCadastro(LocalDateTime dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
-
-
 }
