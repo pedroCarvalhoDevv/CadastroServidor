@@ -1,12 +1,9 @@
-package com.cadastro.cadastroServidor.entity;
+package com.cadastro.cadastroServidor.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import org.springframework.cglib.core.Local;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "tb_lotacao")
@@ -17,14 +14,13 @@ public class Lotacao {
     private Long id;
     @NotBlank
     private String nome;
-    @NotNull
     @Column(name = "data_Cadastro", updatable = false)
-    private LocalDateTime dataCadastro;
+    private Date dataCadastro;
 
-    public Lotacao() {
+    public Lotacao(String nome) {
     }
 
-    public Lotacao(Long id, String nome, LocalDateTime dataCadastro) {
+    public Lotacao(Long id, String nome, Date dataCadastro) {
         this.id = id;
         this.nome = nome;
         this.dataCadastro = dataCadastro;
@@ -46,11 +42,11 @@ public class Lotacao {
         this.nome = nome;
     }
 
-    public LocalDateTime getDataCadastro() {
+    public Date getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(LocalDateTime dataCadastro) {
+    public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
 

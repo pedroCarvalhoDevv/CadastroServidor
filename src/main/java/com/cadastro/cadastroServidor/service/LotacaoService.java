@@ -1,35 +1,33 @@
 package com.cadastro.cadastroServidor.service;
 
-import com.cadastro.cadastroServidor.entity.Lotacao;
-import com.cadastro.cadastroServidor.entity.Servidor;
+import com.cadastro.cadastroServidor.model.entity.Lotacao;
+import com.cadastro.cadastroServidor.model.dto.LotacaoDto;
 import com.cadastro.cadastroServidor.repository.LotacaoRepository;
-import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class LotacaoService {
 
-    private LotacaoRepository lotacaoRepository;
+    private final LotacaoRepository lotacaoRepository;
 
     @Autowired
     public LotacaoService(LotacaoRepository lotacaoRepository) {
         this.lotacaoRepository = lotacaoRepository;
     }
 
-    public Lotacao create(Lotacao lotacao){
-        return lotacaoRepository.save(lotacao);
+    public LotacaoDto create(LotacaoDto lotacaoDto){
+//        Lotacao lotacao = new Lotacao(lotacaoDto.getNome());
+        return new LotacaoDto (lotacaoDto.getNome());
 
     }
     public List<Lotacao> list(){
         return lotacaoRepository.findAll();
     }
-    public Optional<Lotacao> findById(Long id){
+    public Optional<LotacaoDto> findById(Long id){
         return lotacaoRepository.findById(id);
     }
     public Lotacao update(Lotacao lotacao){

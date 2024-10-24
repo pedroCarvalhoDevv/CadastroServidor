@@ -1,11 +1,8 @@
-package com.cadastro.cadastroServidor.entity;
+package com.cadastro.cadastroServidor.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
-import org.springframework.cglib.core.Local;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "tb_servidor")
@@ -15,7 +12,7 @@ public class Servidor {
     private Long matriculaId;
     private String nome;
     @Column(columnDefinition = "date")
-    private LocalDate data;
+    private Date data;
     @ManyToOne
     @JoinColumn(name = "lotacao")
     private Lotacao lotacao;
@@ -23,7 +20,7 @@ public class Servidor {
     public Servidor() {
     }
 
-    public Servidor(Long matriculaId, String nome, LocalDate data, Lotacao lotacao) {
+    public Servidor(Long matriculaId, String nome, Date data, Lotacao lotacao) {
         this.matriculaId = matriculaId;
         this.nome = nome;
         this.data = data;
@@ -46,11 +43,11 @@ public class Servidor {
         this.nome = nome;
     }
 
-    public LocalDate getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(Date data) {
         this.data = data;
     }
 

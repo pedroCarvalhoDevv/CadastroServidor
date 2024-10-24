@@ -1,8 +1,9 @@
 package com.cadastro.cadastroServidor.controller;
 
-import com.cadastro.cadastroServidor.entity.Lotacao;
-import com.cadastro.cadastroServidor.entity.Servidor;
+import com.cadastro.cadastroServidor.model.entity.Lotacao;
+import com.cadastro.cadastroServidor.model.dto.LotacaoDto;
 import com.cadastro.cadastroServidor.service.LotacaoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +20,8 @@ public class LotacaoController {
         this.lotacaoService = lotacaoService;
     }
     @PostMapping
-    public Lotacao creat(@RequestBody Lotacao lotacao){
-        return lotacaoService.create(lotacao);
+    public LotacaoDto creat(@Valid @RequestBody LotacaoDto lotacaoDto){
+        return lotacaoService.create(lotacaoDto);
     }
     @GetMapping
     List<Lotacao> list(){
@@ -28,9 +29,9 @@ public class LotacaoController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<Object> findById(@PathVariable Long id) {
-        Optional<Lotacao> lotacao = lotacaoService.findById(id);
-        if (lotacao.isPresent()) {
-            return ResponseEntity.ok(lotacao.get());
+        Optional<LotacaoDto> lotacaoDto = lotacaoService.findById(id);
+        if (lotacaoDto.isPresent()) {
+            return ResponseEntity.ok(lotacaoDto.get());
         } else {
             // Retorna 404 com mensagem personalizada no corpo
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
