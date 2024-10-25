@@ -1,33 +1,21 @@
 package com.cadastro.cadastroServidor.model.dto;
 
-import java.util.Date;
-
 public class LotacaoDto {
 
-    private String nome;
-    private Date dataCadastro;
+    private String descricao;
 
     public LotacaoDto() {
     }
 
-    public LotacaoDto(String nome) {
-        this.nome = nome;
-        this.dataCadastro = new Date();
+    public LotacaoDto(String descricao) {
+        this.descricao = descricao;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Date getDataCadastro() {
-        return dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }

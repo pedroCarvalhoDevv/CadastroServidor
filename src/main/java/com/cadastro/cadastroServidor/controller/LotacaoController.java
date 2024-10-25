@@ -20,16 +20,16 @@ public class LotacaoController {
         this.lotacaoService = lotacaoService;
     }
     @PostMapping
-    public LotacaoDto creat(@Valid @RequestBody LotacaoDto lotacaoDto){
+    public LotacaoDto create(@Valid @RequestBody LotacaoDto lotacaoDto){
         return lotacaoService.create(lotacaoDto);
     }
     @GetMapping
-    List<Lotacao> list(){
+    List<LotacaoDto> list(){
         return lotacaoService.list();
     }
     @GetMapping("/{id}")
     public ResponseEntity<Object> findById(@PathVariable Long id) {
-        Optional<LotacaoDto> lotacaoDto = lotacaoService.findById(id);
+        Optional<LotacaoDto> lotacao = lotacaoService.findById(id);
         if (lotacaoDto.isPresent()) {
             return ResponseEntity.ok(lotacaoDto.get());
         } else {
@@ -40,7 +40,8 @@ public class LotacaoController {
     }
     @PutMapping
     public Lotacao update(@RequestBody Lotacao lotacao){
-        return lotacaoService.update(lotacao);
+        LotacaoDto lotacaoD;
+        return lotacaoService.update(new LotacaoDto());
     }
     @DeleteMapping("{id}")
     public void delete(@PathVariable("id")Long id){

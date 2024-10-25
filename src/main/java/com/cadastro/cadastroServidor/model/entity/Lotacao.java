@@ -1,28 +1,28 @@
 package com.cadastro.cadastroServidor.model.entity;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-
 import java.util.Date;
+
 
 @Entity
 @Table(name = "tb_lotacao")
 public class Lotacao {
+private static final int NOME_MAX_LENGTH = 200;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
-    private String nome;
+    private String descricao;
     @Column(name = "data_Cadastro", updatable = false)
     private Date dataCadastro;
 
     public Lotacao(String nome) {
     }
 
-    public Lotacao(Long id, String nome, Date dataCadastro) {
+    public Lotacao(Long id, String descricao, Date dataCadastro) {
         this.id = id;
-        this.nome = nome;
+        setDescricao(descricao);
         this.dataCadastro = dataCadastro;
     }
 
@@ -34,12 +34,12 @@ public class Lotacao {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public @NotBlank String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(@NotBlank String descricao) {
+        this.descricao = descricao;
     }
 
     public Date getDataCadastro() {
@@ -49,6 +49,4 @@ public class Lotacao {
     public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
-
-
 }

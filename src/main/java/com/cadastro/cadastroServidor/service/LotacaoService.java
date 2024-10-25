@@ -21,17 +21,17 @@ public class LotacaoService {
 
     public LotacaoDto create(LotacaoDto lotacaoDto){
 //        Lotacao lotacao = new Lotacao(lotacaoDto.getNome());
-        return new LotacaoDto (lotacaoDto.getNome());
+        return new LotacaoDto (lotacaoDto.getDescricao());
 
     }
-    public List<Lotacao> list(){
+    public List<LotacaoDto> findAll(){
         return lotacaoRepository.findAll();
     }
-    public Optional<LotacaoDto> findById(Long id){
+    public Optional<Lotacao> findById(Long id){
         return lotacaoRepository.findById(id);
     }
-    public Lotacao update(Lotacao lotacao){
-        return lotacaoRepository.save(lotacao);
+    public LotacaoDto update(LotacaoDto lotacaoDto){
+        return lotacaoRepository.save(lotacaoDto);
     }
     public void delete(Long id){
         lotacaoRepository.deleteById(id);

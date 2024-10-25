@@ -1,16 +1,24 @@
 package com.cadastro.cadastroServidor.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "tb_servidor")
 public class Servidor {
+private static final int NOME_MAX_LENGTH = 400;
+private static final int MATRICULA_MAX_LENGHT = 200;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long matriculaId;
+    private Long Id;
+    @NotBlank
     private String nome;
+    @NotNull
+    private String matricula;
     @Column(columnDefinition = "date")
     private Date data;
     @ManyToOne
@@ -20,19 +28,20 @@ public class Servidor {
     public Servidor() {
     }
 
-    public Servidor(Long matriculaId, String nome, Date data, Lotacao lotacao) {
-        this.matriculaId = matriculaId;
-        this.nome = nome;
+    public Servidor(Long id, String nome, String matricula, Date data, Lotacao lotacao) {
+        Id = id;
+        setNome(nome);
+        setMatricula(matricula);
         this.data = data;
         this.lotacao = lotacao;
     }
 
-    public Long getMatriculaId() {
-        return matriculaId;
+    public Long getId() {
+        return Id;
     }
 
-    public void setMatriculaId(Long matriculaId) {
-        this.matriculaId = matriculaId;
+    public void setId(Long id) {
+        Id = id;
     }
 
     public String getNome() {
@@ -40,7 +49,23 @@ public class Servidor {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if (nome.length() > NOME_MAX_LENGTH){
+            this.nome = nome.substring(0,NOME_MAX_LENGTH);
+        } else {
+            this.nome = nome;
+        }
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        if (matricula.length() > MATRICULA_MAX_LENGHT){
+            this.matricula = matricula.substring(0,MATRICULA_MAX_LENGHT);
+        } else {
+            this.matricula = matricula;
+        }
     }
 
     public Date getData() {
@@ -58,5 +83,4 @@ public class Servidor {
     public void setLotacao(Lotacao lotacao) {
         this.lotacao = lotacao;
     }
-
 }
